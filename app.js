@@ -1,33 +1,24 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const methodOverride = require('method-override'); // kalau mau pakai PUT/DELETE
 const mahasiswaRoutes = require('./routes/mahasiswaRoutes');
+const dosenRoutes = require('./routes/dosenRoutes');
+const matakuliahRoutes = require('./routes/matakuliahRoutes');
 
 const app = express();
-
-// set view engine
 app.set('view engine', 'ejs');
-
-// middleware
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public')); // untuk file CSS/JS
-app.use(methodOverride('_method')); // support method override
+app.use(express.static('public')); // serve style.css
 
-// redirect root ke /mahasiswa
+// redirect root ke index
 app.get('/', (req, res) => {
-  res.redirect('/mahasiswa');
+  res.render('index');
 });
 
-// routes mahasiswa
+// routes
 app.use('/', mahasiswaRoutes);
+app.use('/', dosenRoutes);
+app.use('/', matakuliahRoutes);
 
-// error handler global
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Terjadi kesalahan!');
-});
-
-// start server
 app.listen(3000, () => {
   console.log('Server running at http://localhost:3000');
 });

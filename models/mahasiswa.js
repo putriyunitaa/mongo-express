@@ -1,18 +1,11 @@
 const mongoose = require('../db');
 
 const mahasiswaSchema = new mongoose.Schema({
-  nrp: {
-    type: String,
-    required: true
-  },
-  nama: {
-    type: String,
-    required: true
-  },
-  jurusan: {
-    type: String,
-    required: true
-  }
-}, { collection: 'mahasiswa' }); // sinkron dengan Compass
+  nrp: String,
+  nama: String,
+  jurusan: String,
+  matakuliah_diambil: [{ type: mongoose.Schema.Types.ObjectId, ref: 'MataKuliah' }]
+});
 
-module.exports = mongoose.model('Mahasiswa', mahasiswaSchema);
+// tambahkan parameter ketiga 'mahasiswa'
+module.exports = mongoose.model('Mahasiswa', mahasiswaSchema, 'mahasiswa');

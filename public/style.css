@@ -1,0 +1,81 @@
+/* Reset sederhana */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f9f9f9;
+  color: #2c3e50;
+}
+
+h1 {
+  color: #27ae60;
+  margin-bottom: 15px;
+}
+
+h2 {
+  color: #2980b9;
+  margin-top: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 5px 0;
+  padding: 5px;
+  background: #ecf0f1;
+  border-radius: 4px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 15px;
+  background: #fff;
+}
+
+table, th, td {
+  border: 1px solid #bdc3c7;
+}
+
+th {
+  background-color: #27ae60;
+  color: white;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+form {
+  margin-top: 15px;
+}
+
+input, button {
+  padding: 6px;
+  margin: 4px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #27ae60;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2ecc71;
+}
+
+a {
+  color: #c0392b;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+a:hover {
+  text-decoration: underline;
+}

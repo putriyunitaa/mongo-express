@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data Mata Kuliah</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Daftar Mata Kuliah</h1>
+    <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#formTambah">+ Tambah Mata Kuliah</button>
+  </div>
+
+  <table class="table table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th>Kode</th>
+        <th>Nama</th>
+        <th>SKS</th>
+        <th>Semester</th>
+        <th>Dosen</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% matakuliah.forEach(mk => { %>
+        <tr>
+          <td><%= mk.kode %></td>
+          <td><%= mk.nama %></td>
+          <td><%= mk.sks %></td>
+          <td><%= mk.semester %></td>
+          <td><%= mk.dosen ? mk.dosen.nama : '-' %></td>
+          <td>
+            <button class="btn btn-sm btn-warning" data-bs-toggle="collapse" data-bs-target="#editForm<%= mk._id %>">Edit</button>
+            <a href="/matakuliah/delete/<%= mk._id %>" class="btn btn-sm btn-danger">Delete</a>
+          </td>
+        </tr>
+        <tr class="collapse" id="editForm<%= mk._id %>">
+          <td colspan="6">
+            <form action="/matakuliah/update/<%= mk._id %>" method="POST" class="row g-2">
+              <div class="col-md-2"><input type="text" name="kode" value="<%= mk.kode %>" class="form-control" /></div>
+              <div class="col-md-3"><input type="text" name="nama" value="<%= mk.nama %>" class="form-control" /></div>
+              <div class="col-md-2"><input type="number" name="sks" value="<%= mk.sks %>" class="form-control" /></div>
+              <div class="col-md-2"><input type="number" name="semester" value="<%= mk.semester %>" class="form-control" /></div>
+              <div class="col-md-3"><button type="submit" class="btn btn-success">Update</button></div>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <div class="collapse" id="formTambah">
+    <div class="card card-body">
+      <form action="/matakuliah" method="POST" class="row g-2">
+        <div class="col-md-2"><input type="text" name="kode" placeholder="Kode" required class="form-control" /></div>
+        <div class="col-md-3"><input type="text" name="nama" placeholder="Nama" required class="form-control" /></div>
+        <div class="col-md-2"><input type="number" name="sks" placeholder="SKS" required class="form-control" /></div>
+        <div class="col-md-2"><input type="number" name="semester" placeholder="Semester" required class="form-control" /></div>
+        <div class="col-md-3"><button type="submit" class="btn btn-primary">Tambah</button></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
